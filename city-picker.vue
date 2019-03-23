@@ -24,7 +24,7 @@
 </template>
 
 <script>
-	import city from './citys.js';
+	import city from './data.js';
 	export default {
 		data() {
 			return {
