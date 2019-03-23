@@ -13,7 +13,7 @@
 					<picker-view-column>
 						<view class="city-pick-body-item" v-for="(item,index) in city" :key="index">{{item.name}}</view>
 					</picker-view-column>
-					<picker-view-column v-show="mode==3">
+					<picker-view-column v-if="mode==3">
 						<view class="city-pick-body-item" v-for="(item,index) in district" :key="index">{{item.name}}</view>
 					</picker-view-column>
 				</picker-view>
@@ -29,8 +29,7 @@
 		data() {
 			return {
 				indicator: "city-picker-indicator",
-				visible: true,
-				seclect: [2, 0, 0],
+				seclect: [23, 0, 0],
 				province: [],
 				city: [],
 				district: [],
@@ -54,11 +53,6 @@
 			this.initData()
 		},
 		methods: {
-			bindCityPickShow() {
-				let that = this;
-				that.show = !that.show
-				this.initData()
-			},
 			bindCancel(){
 				this.$emit('bindCancel');
 			},
@@ -66,12 +60,11 @@
 				let that	= this;
 				let result	= [
 					that.province[that.seclect[0]],
-					that.province[that.seclect[1]]
+					that.city[that.seclect[1]]
 				]
 				if (that.mode == 3) {
-					result.push(that.province[that.seclect[2]])
+					result.push(that.district[that.seclect[2]])
 				}
-				// that.show	= !that.show;
 				that.$emit('bindConfirm',result);
 			},
 			bindChange(e) {
